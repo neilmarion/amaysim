@@ -7,6 +7,8 @@
 # 6. Getting the total price - sc.total_price
 # 7. Getting the expected items - sc.items
 #
+# - Prices are dynamically computed everytime an item or promo code is added
+#
 # NOTE: A little deviation on the exam specifications on naming the methods
 # on adding items, adding promo codes and getting the items from the cart
 #
