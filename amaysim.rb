@@ -11,7 +11,7 @@
 # on adding items, adding promo codes and getting the items from the cart
 #
 # Sorry I have to put everything in one file. Got no time to install ruby in
-# my brother's laptop. ;)
+# my brother's laptop and so you can check it on this online ruby interpreter https://repl.it/FFm6/0 ;)
 #
 # Running this file will run the simple tests/specs
 
