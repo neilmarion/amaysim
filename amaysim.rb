@@ -55,6 +55,14 @@ class ShoppingCart
     @total_price = total_price
   end
 
+  def summary
+    puts "Items in cart: \n"
+    total_items.each do |item|
+      puts"1x #{item.name}"
+    end
+    puts "\n Total price:#{total_price}"
+  end
+
   private
 
   def apply_pricing_rules
