@@ -185,6 +185,7 @@ class ShoppingCartSpec
   end
 
   def execute
+    puts "Running specs"
     init_pricing_rules
     init_products
 
@@ -197,7 +198,7 @@ class ShoppingCartSpec
   end
 
   def test_1
-    puts "1) 3 x Unlimited 1 GB + 1 Unlimited 5 GB"
+    #"1) 3 x Unlimited 1 GB + 1 Unlimited 5 GB"
     shopping_cart = ShoppingCart.new(@pricing_rules)
 
     shopping_cart.add_item(@ult_small)
@@ -208,13 +209,13 @@ class ShoppingCartSpec
     ult_small_products = shopping_cart.total_items.select{|item| item.code == @ult_small.code }
     ult_large_products = shopping_cart.total_items.select{|item| item.code == @ult_large.code }
 
-    puts ult_small_products.count == 3
-    puts ult_large_products.count == 1
-    puts shopping_cart.total_price == 94.7
+    assert(ult_small_products.count == 3)
+    assert(ult_large_products.count == 1)
+    assert(shopping_cart.total_price == 94.7)
   end
 
   def test_2
-    puts "2) 2 x Unlimited 1 GB + 4 x Unlimited 5 GB"
+    #"2) 2 x Unlimited 1 GB + 4 x Unlimited 5 GB"
     shopping_cart = ShoppingCart.new(@pricing_rules)
 
     shopping_cart.add_item(@ult_small)
@@ -227,13 +228,13 @@ class ShoppingCartSpec
     ult_small_products = shopping_cart.total_items.select{|item| item.code == @ult_small.code }
     ult_large_products = shopping_cart.total_items.select{|item| item.code == @ult_large.code }
 
-    puts ult_small_products.count == 2
-    puts ult_large_products.count == 4
-    puts shopping_cart.total_price == 229.4
+    assert(ult_small_products.count == 2)
+    assert(ult_large_products.count == 4)
+    assert(shopping_cart.total_price == 229.4)
   end
 
   def test_3
-    puts "3) 1 x Unlimited 1 GB + 2 x Unlimited 2 GB"
+    #"3) 1 x Unlimited 1 GB + 2 x Unlimited 2 GB"
 
     shopping_cart = ShoppingCart.new(@pricing_rules)
     shopping_cart.add_item(@ult_small)
@@ -244,14 +245,14 @@ class ShoppingCartSpec
     ult_medium_products = shopping_cart.total_items.select{|item| item.code == @ult_medium.code }
     ult_one_gb_products = shopping_cart.total_items.select{|item| item.code == @one_gb.code }
 
-    puts ult_small_products.count == 1
-    puts ult_medium_products.count == 2
-    puts ult_one_gb_products.count == 2
-    puts shopping_cart.total_price == 84.7
+    assert(ult_small_products.count == 1)
+    assert(ult_medium_products.count == 2)
+    assert(ult_one_gb_products.count == 2)
+    assert(shopping_cart.total_price == 84.7)
   end
 
   def test_4
-    puts "4) 1 x Unlimited 1 GB + 1 x 1 GB Data-pack with promo code"
+    #"4) 1 x Unlimited 1 GB + 1 x 1 GB Data-pack with promo code"
 
     shopping_cart = ShoppingCart.new(@pricing_rules)
     shopping_cart.add_promo_code("I<3AMAYSIM")
@@ -260,13 +261,13 @@ class ShoppingCartSpec
 
     ult_small_products = shopping_cart.total_items.select{|item| item.code == @ult_small.code }
     ult_one_gb_products = shopping_cart.total_items.select{|item| item.code == @one_gb.code }
-    puts ult_small_products.count == 1
-    puts ult_one_gb_products.count == 1
-    puts shopping_cart.total_price == 31.32
+    assert(ult_small_products.count == 1)
+    assert(ult_one_gb_products.count == 1)
+    assert(shopping_cart.total_price == 31.32)
   end
 
   def test_5
-    puts "5) 2 x Unlimited 1 GB + 4 x Unlimited 5 GB"
+    #5) 2 x Unlimited 1 GB + 4 x Unlimited 5 GB"
     shopping_cart = ShoppingCart.new(@pricing_rules)
 
     shopping_cart.add_item(@ult_small)
@@ -279,14 +280,14 @@ class ShoppingCartSpec
 
     ult_small_products = shopping_cart.items.select{|item| item.code == @ult_small.code }
     ult_large_products = shopping_cart.items.select{|item| item.code == @ult_large.code }
-    puts ult_small_products.count == 2
-    puts ult_large_products.count == 5
-    puts shopping_cart.total_price == 249.3
+    assert(ult_small_products.count == 2)
+    assert(ult_large_products.count == 5)
+    assert(shopping_cart.total_price == 249.3)
 
   end
 
   def test_6
-    puts "6) 4 x Unlimited 1 GB + 2 x Unlimited 2 GB"
+    #6) 4 x Unlimited 1 GB + 2 x Unlimited 2 GB"
     shopping_cart = ShoppingCart.new(@pricing_rules)
 
     shopping_cart.add_item(@ult_small)
@@ -300,12 +301,16 @@ class ShoppingCartSpec
     ult_one_gb_products = shopping_cart.total_items.select{|item| item.code == @one_gb.code }
     ult_medium_products = shopping_cart.total_items.select{|item| item.code == @ult_medium.code }
 
-    puts ult_small_products.count == 4
-    puts ult_one_gb_products.count == 2
-    puts ult_medium_products.count == 2
+    assert(ult_small_products.count == 4)
+    assert(ult_one_gb_products.count == 2)
+    assert(ult_medium_products.count == 2)
 
-    puts shopping_cart.total_price == 134.5
+    assert(shopping_cart.total_price == 134.5)
 
+  end
+
+  def assert(result)
+    result ? print(".") : print("f")
   end
 end
 
